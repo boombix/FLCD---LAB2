@@ -54,6 +54,7 @@ def test():
     ST.addToken("2")
     ST.addToken("abc")
     ST.addToken("bca")
+    ST.addToken("cab")
     ST.addToken("2")
     ST.addToken("maxim")
     ST.addToken("456")
@@ -62,6 +63,7 @@ def test():
     print("Search test:")
     print(ST.searchToken("ba"))
     print(ST.searchToken("maxim"))
+    print(ST.searchToken("bca"))
     print(ST.searchToken("eda"))
 
     print("The SymbolTable:")

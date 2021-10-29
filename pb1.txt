@@ -1,0 +1,9 @@
+int x,y,z, minim;
+cin x,y,z;
+minim = x;
+
+if (minim < y)
+minim = y;
+
+if (minim < z)
+minim = z;

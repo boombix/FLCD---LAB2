@@ -1,0 +1,8 @@
+int x$d,y,z;
+cin x,y,z;
+int minim = x;
+if (minim < y)
+minim = y;
+if (minim < z)
+minim = z;
+cout "Minimum number is: , minim;

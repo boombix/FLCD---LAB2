@@ -1,6 +1,7 @@
 from SymbolTable import SymbolTable
 import re
 
+
 class Scanner:
     def __init__(self, size, file):
         self.st = SymbolTable(50)
@@ -22,6 +23,15 @@ class Scanner:
                     print(line3)
             # words = line.split(" ")
             # print(words, "\n")
+
+    def getTokensFromLine(self, line):
+        token = ''
+        tokensList = []
+        index = 0
+        while index < len(line):
+            pass
+
+
 
     def getIdentifier(self, line):
         pass
