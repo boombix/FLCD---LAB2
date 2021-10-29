@@ -6,7 +6,7 @@ from SymbolTable import SymbolTable
 
 class Scanner:
     def __init__(self, file):
-        self.operators = ["+", "-", '*', "%", "/", "=", "<", "<=", "==", ">=", ">"]
+        self.operators = ["+", "-", '*', "%", "/", "=", "<", "<=", "==", ">=", ">", "++", "+="]
         self.separators = ["[", "]", "{", "}", "(", ")", ";", ",", " ", "\t", "\n", ":"]
         self.reservedWords = ["for", "char", "const", "do", "else", "if", "int", "float", "for", "while",
                               "bool", "true", "false", "cin", "cout"]
@@ -98,7 +98,8 @@ class Scanner:
             # line = line.split()
             tokenList = self.tokenize(line)
             for token in tokenList:
-                if token in self.separators + self.operators + self.reservedWords:
+                print(token)
+                if token in self.separators or token in self.operators or token in self.reservedWords:
                     if token == " " or token == '\n' or token == '\t' or token == "":
                         continue
                     self.pif.append((token, 0))
@@ -112,7 +113,7 @@ class Scanner:
                     errors.append("Lexical error at line " + str(lineIndex) + " on token " + str(token))
             lineIndex += 1
 
-        if(len(errors) == 0):
+        if len(errors) == 0:
             with open('ST.out', 'w') as writer:
                 writer.write(str(self.st.get_st()))
 
@@ -128,5 +129,5 @@ class Scanner:
 
 
 if __name__ == '__main__':
-    scanner = Scanner("pb1err.txt")
+    scanner = Scanner("pb3.txt")
     scanner.analyze()
