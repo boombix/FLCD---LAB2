@@ -1,15 +1,18 @@
 import re
 import pprint
 
+from FiniteAutomata import FiniteAutomata
 from SymbolTable import SymbolTable
 
 
 class Scanner:
     def __init__(self, file):
-        self.operators = ["+", "-", '*', "%", "/", "=", "<", "<=", "==", ">=", ">", "++", "+="]
+        self.operators = ["+", "-", '*', "%", "/", "=", "<", "<=", "==", ">=", ">"]
         self.separators = ["[", "]", "{", "}", "(", ")", ";", ",", " ", "\t", "\n", ":"]
         self.reservedWords = ["for", "char", "const", "do", "else", "if", "int", "float", "for", "while",
                               "bool", "true", "false", "cin", "cout"]
+        self.faIdentifier = FiniteAutomata("faIdentifier.in")
+        self.faConstant = FiniteAutomata("faConstant.in")
         self.st = SymbolTable(50)
         self.pif = []
         self.file = file
@@ -98,22 +101,21 @@ class Scanner:
             # line = line.split()
             tokenList = self.tokenize(line)
             for token in tokenList:
-                print(token)
-                if token in self.separators or token in self.operators or token in self.reservedWords:
+                if token in self.separators + self.operators + self.reservedWords:
                     if token == " " or token == '\n' or token == '\t' or token == "":
                         continue
                     self.pif.append((token, 0))
-                elif self.isBoolConstant(token) or self.isStringConstant(token) or self.isIntegerConstant(token):
+                elif self.isBoolConstant(token) or self.isStringConstant(token) or self.faConstant.verifySequence(token):
                     position = self.st.addToken(token)
                     self.pif.append(("constant", position))
-                elif self.isIdentifier(token):
+                elif self.faIdentifier.verifySequence(token):
                     position = self.st.addToken(token)
                     self.pif.append(("identifier", position))
                 else:
                     errors.append("Lexical error at line " + str(lineIndex) + " on token " + str(token))
             lineIndex += 1
 
-        if len(errors) == 0:
+        if(len(errors) == 0):
             with open('ST.out', 'w') as writer:
                 writer.write(str(self.st.get_st()))
 
@@ -129,5 +131,5 @@ class Scanner:
 
 
 if __name__ == '__main__':
-    scanner = Scanner("pb3.txt")
+    scanner = Scanner("pb1.txt")
     scanner.analyze()
