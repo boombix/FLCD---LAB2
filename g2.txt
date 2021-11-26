@@ -1,0 +1,28 @@
+program type declaration listIdentifier arrayListIdentifier variableDeclaration arrayDeclaration arrayElement moreStatements statements statement simpleStatement assignStatement expression term factor inputStatement outputStatement structStatement loopStatement ifStatement whileStatement forStatement condition incDecr relation
+; int bool float , [ ] { }  *= += -= /= = + - * / cin cout ++ -- < <= == != >= > number identifier constant
+program
+program -> statements ;
+type -> int | bool | float
+declaration -> variableDeclaration | arrayDeclaration
+listIdentifier -> identifier | listIdentifier , identifier
+arrayListIdentifier -> identifier [ number ] | arrayListIdentifier , identifier [ number ]
+variableDeclaration -> type listIdentifier ;
+arrayDeclaration -> type arrayListIdentifier ;
+arrayElement -> identifier [ number ]
+moreStatements -> statement ; statements
+statements -> statement | statement ; statements
+simpleStatement -> assignStatement | inputStatement | outputStatement
+assignStatement -> identifier *= expression ; |  identifier += expression ; | identifier -= expression ; | identifier /= expression ; | identifier = expression ;
+expression -> expression + term | expression - term | term
+term -> term * factor | term / factor | factor
+factor -> ( expression ) | identifier | constant | arrayElement
+inputStatement -> cin identifierList ;
+outputStatement -> cout expression ; | outputStatement , expression ;
+structStatement -> ifStatement | loopStatement
+loopStatement -> whileStatement | forStatement
+ifStatement -> if ( condition ) statement | if ( condition ) statement else statement | if ( condition ) statement else { moreStatements } | if ( condition ) { moreStatements } | if ( condition ) { moreStatements } else statement | if ( condition ) { moreStatements } else { moreStatements }
+whileStatement -> while ( condition ) statement | while ( condition ) { moreStatements }
+forStatement -> for ( declaration ; condition ; incDecr ) statement | for ( identifier ; condition ; incDecr ) statement | for ( declaration ; condition ; incDecr ) { moreStatements } | for ( identifier ; condition ; incDecr ) { moreStatements }
+condition -> expression relation expression
+incDecr -> identifier ++ | identifier --
+relation -> < | <= | == | != | >= | >
