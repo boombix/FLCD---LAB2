@@ -32,3 +32,11 @@ class Grammar:
             if key not in self.N:
                 return False
         return True
+
+    def searchProductionbyPI(self, index):
+        for lhs in self.P.keys():
+            productions = self.P[lhs]
+            for production in productions:
+                productionIndex = production[1]
+                if productionIndex == index:
+                    return lhs, production[0]

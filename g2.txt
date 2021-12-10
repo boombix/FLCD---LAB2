@@ -1,5 +1,5 @@
 program type declaration listIdentifier arrayListIdentifier variableDeclaration arrayDeclaration arrayElement moreStatements statements statement simpleStatement assignStatement expression term factor inputStatement outputStatement structStatement loopStatement ifStatement whileStatement forStatement condition incDecr relation
-; int bool float , [ ] { }  *= += -= /= = + - * / cin cout ++ -- < <= == != >= > number identifier constant
+; int bool float , [ ] { }  *= += -= /= = + - * / cin cout ++ -- < <= == != >= > number identifier constant eps
 program
 program -> statements ;
 type -> int | bool | float
