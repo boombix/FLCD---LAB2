@@ -1,0 +1,11 @@
+S -> A B 
+A -> ( S ) 
+S -> A B 
+A -> int C 
+C -> eps 
+B -> eps 
+B -> + S 
+S -> A B 
+A -> int C 
+C -> eps 
+B -> eps 

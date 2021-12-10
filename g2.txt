@@ -1,16 +1,18 @@
 program type declaration listIdentifier arrayListIdentifier variableDeclaration arrayDeclaration arrayElement moreStatements statements statement simpleStatement assignStatement expression term factor inputStatement outputStatement structStatement loopStatement ifStatement whileStatement forStatement condition incDecr relation
-; int bool float , [ ] { }  *= += -= /= = + - * / cin cout ++ -- < <= == != >= > number identifier constant eps
+; int bool float , [ ] { }  *= += -= /= = + - * / cin cout ++ -- < <= == != >= > number identifier constant eps if else ( )
 program
 program -> statements ;
 type -> int | bool | float
 declaration -> variableDeclaration | arrayDeclaration
-listIdentifier -> identifier | listIdentifier , identifier
+A -> , listIdentifier | eps
+listIdentifier -> identifier A
 arrayListIdentifier -> identifier [ number ] | arrayListIdentifier , identifier [ number ]
 variableDeclaration -> type listIdentifier ;
 arrayDeclaration -> type arrayListIdentifier ;
 arrayElement -> identifier [ number ]
 moreStatements -> statement ; statements
 statements -> statement | statement ; statements
+statement -> simpleStatement | structStatement
 simpleStatement -> assignStatement | inputStatement | outputStatement
 assignStatement -> identifier *= expression ; |  identifier += expression ; | identifier -= expression ; | identifier /= expression ; | identifier = expression ;
 expression -> expression + term | expression - term | term

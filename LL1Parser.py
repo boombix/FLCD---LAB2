@@ -211,21 +211,19 @@ class LL1Parser:
         else:
             print("Sequence not accepted!")
 
-
-
-
-
-
-
-
-
+    def readSequenceFromFile(self, filename):
+        seqString = ""
+        file = open(filename, "r")
+        for line in file:
+            line = line.strip()
+            seqString += line + " "
+        return seqString
 
 
 if __name__ == "__main__":
-    grammar = Grammar("g2.txt")
-    print(grammar.searchProductionbyPI(2))
+    grammar = Grammar("g4.txt")
+    print(grammar.P)
     parser = LL1Parser(grammar)
-    parser.constructFirst()
     print(parser.FIRST)
     print(parser.isContainedInRhs("E'"))
     print(parser.FOLLOW)
